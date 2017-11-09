@@ -1,0 +1,42 @@
+</!DOCTYPE html>
+
+<html>
+<head>
+  <title></title>
+</head>
+<body>
+  <table border = 1>
+    <!--
+    <tr>
+      <%session = Session.first%>
+        <% session.attributes.key.each do |key|%>
+          <td><%= key %></td>
+      <%end%>
+    </tr>-->
+
+  <% Session.all.each do |session|%>
+  <tr>
+    <% session.attributes.each do |key, value|%>
+    <td>
+    <%if(key != "teacher_id")%>
+    <%= value %>
+    <%else%>
+      <% teacher = Teacher.find(session.teacher_id) %>
+      <%= teacher.name%>
+    <%end%>
+    </td>
+    <% end %>
+  </tr>
+  <%end%>
+</table>
+</body>
+</html>
+
+<!--       t.datetime :begin_time
+      t.datetime :end_time
+      t.string :end_pose
+      t.integer :energy_before
+      t.integer :energy_after
+      t.string :practice_type
+      t.timestamps null: false -->
+      
