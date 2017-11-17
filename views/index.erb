@@ -6,23 +6,27 @@
 </head>
 <body>
   <table border = 1>
-    <!--
+    
     <tr>
-      <%session = Session.first%>
-        <% session.attributes.key.each do |key|%>
+      <%session = sessions.first%>
+        <% session.attributes.keys.each do |key|%>
           <td><%= key %></td>
       <%end%>
-    </tr>-->
-
-  <% Session.all.each do |session|%>
+    </tr>
+  <% sessions.all.each do |session|%>
   <tr>
     <% session.attributes.each do |key, value|%>
     <td>
-    <%if(key != "teacher_id")%>
-    <%= value %>
-    <%else%>
-      <% teacher = Teacher.find(session.teacher_id) %>
-      <%= teacher.name%>
+    <%if(key != "teacher_id" && key != "pose_id")%>
+      <%= value %>
+      <%end%>
+    <%if key == "teacher_id"%>
+
+      <%= session.teacher.name if session.teacher%>
+
+    <%end%>
+    <%if key == "pose_id"%>
+      <%= session.pose.name if session.pose%>
     <%end%>
     </td>
     <% end %>

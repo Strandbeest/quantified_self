@@ -25,7 +25,6 @@ CSV.foreach('./yoga_sessions.csv') do |row|
 	end_time = DateTime.new(row[2].to_i, row[1].to_i, row[0].to_i, end_time_string[0].to_i, end_time_string[1].to_i, end_time_string[2].to_i)
 	p end_time
 
-	#pose = Pose.find_or_create_by(:name => row[7])
 	teacher = Teacher.find_or_create_by(:name => row[11])
 	session = Session.new(:begin_time => begin_time, :end_time => end_time, :end_pose => row[7], :energy_before => row[8], :energy_after =>row[9], :practice_type => row[10], :teacher_id => teacher.id).save!
 
